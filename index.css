@@ -1,0 +1,184 @@
+:root {
+    --bg-light: #f5f2eb;
+    --card-bg: #ffffff;
+    --btn-medium: #8c6f56;
+    --btn-dark: #5a3e2b;
+    --text-dark: #2c2c2c;
+    --accent: #a68a6d;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start; 
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.tasks {
+    flex: 1;
+    max-width: 350px; 
+}
+
+.card.pomodoro {
+    flex: none;         
+    width: 320px;      
+    min-height: 220px;   
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;         
+    padding: 2rem;       
+}
+
+h2 {
+    margin-bottom: 1rem;
+    color: var(--btn-dark);
+    font-weight: 600;
+}
+
+.task-input {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+input {
+    flex: 1;
+    padding: 0.6rem;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: var(--bg-light);
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+ul li button {
+    background: none;
+    border: none;
+    color: var(--btn-dark);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+ul li button:hover {
+    color: crimson;
+}
+
+ul li:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+ul li span.done {
+    text-decoration: line-through;
+    opacity: 0.7;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+ul li span.done::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: var(--btn-dark);
+    font-weight: bold;
+}
+
+.btn {
+    background-color: var(--btn-medium);
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.btn:hover {
+    background-color: var(--btn-dark);
+    transform: scale(1.08);
+    box-shadow: 0 6px 14px rgba(68, 67, 67, 0.25);
+}
+
+.btn.active {
+    background-color: var(--btn-dark);
+}
+
+.btn.primary {
+    margin-top: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.timer {
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 2rem 0;
+    color: var(--btn-dark);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.quote {
+  margin-top: 2rem;
+  text-align: center;
+  font-style: italic;
+  color: var(--text-dark);
+  background: var(--bg-light);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.quote p {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.quote span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 1.1rem; 
+  font-weight: 600;
+  color: var(--btn-dark);
+}
