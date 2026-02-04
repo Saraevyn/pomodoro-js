@@ -11,17 +11,20 @@ body {
     font-family: 'Segoe UI', sans-serif;
     background-color: var(--bg-light);
     color: var(--text-dark);
+    margin: 0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 
 .container {
     display: flex;
-    gap: 2rem;
-    align-items: flex-start; 
+    width: 90%; 
+    max-width: 1000px;
+    gap: 20px;
+    height: 90vh; 
+    align-items: stretch; 
 }
 
 .card {
@@ -35,18 +38,24 @@ body {
 }
 
 .card.tasks {
-    flex: 1;
-    max-width: 350px; 
+    flex: 1; 
+    max-height: 465px;
+    overflow-y: auto; 
+}
+
+.card.tasks::-webkit-scrollbar {
+    width: 6px;
+}
+.card.tasks::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
 }
 
 .card.pomodoro {
-    flex: none;         
-    width: 320px;      
-    min-height: 220px;   
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;         
-    padding: 2rem;       
+    flex: 1; 
+    max-height: 350px;
+    display: flex;
+    flex-direction: column;
 }
 
 h2 {
@@ -67,6 +76,13 @@ input {
     border: 1px solid var(--accent);
     border-radius: 8px;
     font-size: 0.95rem;
+}
+
+input:focus {
+    outline: none; 
+    border-color: var(--btn-dark); 
+    box-shadow: 0 0 5px rgba(90, 62, 43, 0.3); 
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 ul {
@@ -159,14 +175,11 @@ ul li span.done::before {
 }
 
 .quote {
-  margin-top: 2rem;
-  text-align: center;
-  font-style: italic;
-  color: var(--text-dark);
-  background: var(--bg-light);
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    flex: 0; 
+    min-height: fit-content;
+    width: 100%;
+    margin-top: 0; 
+    box-sizing: border-box;
 }
 
 .quote p {
@@ -181,4 +194,52 @@ ul li span.done::before {
   font-size: 1.1rem; 
   font-weight: 600;
   color: var(--btn-dark);
+}
+
+.panel {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+
+@media (max-width: 841px) {
+    body {
+        height: auto;
+        padding: 2rem 0; 
+    }
+
+    .container {
+        flex-direction: column; 
+        height: auto;
+        width: 95%;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .card.tasks, .panel {
+        width: 100%; 
+        max-width: 450px; 
+        flex: none;
+    }
+
+    .card.tasks {
+        max-height: none; 
+        height: auto;
+    }
+
+    .panel {
+        height: auto;
+    }
+
+    .card.pomodoro {
+        max-height: none;
+        padding: 1.5rem;
+    }
+
+    .timer {
+        font-size: 3rem; 
+    }
 }
