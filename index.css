@@ -20,11 +20,11 @@ body {
 
 .container {
     display: flex;
-    width: 90%; 
+    width: 90%;
     max-width: 1000px;
     gap: 20px;
-    height: 90vh; 
-    align-items: stretch; 
+    height: 90vh;
+    align-items: stretch;
 }
 
 .card {
@@ -37,25 +37,28 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card.tasks {
-    flex: 1; 
-    max-height: 465px;
-    overflow-y: auto; 
-}
 
 .card.tasks::-webkit-scrollbar {
     width: 6px;
 }
+
 .card.tasks::-webkit-scrollbar-thumb {
     background: var(--accent);
     border-radius: 10px;
 }
 
 .card.pomodoro {
-    flex: 1; 
-    max-height: 350px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+.card.tasks {
+    flex: 1.2;
+    max-height: 500px;
 }
 
 h2 {
@@ -79,9 +82,9 @@ input {
 }
 
 input:focus {
-    outline: none; 
-    border-color: var(--btn-dark); 
-    box-shadow: 0 0 5px rgba(90, 62, 43, 0.3); 
+    outline: none;
+    border-color: var(--btn-dark);
+    box-shadow: 0 0 5px rgba(90, 62, 43, 0.3);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -146,6 +149,7 @@ ul li span.done::before {
     font-size: 1rem;
     font-weight: 500;
     transition: all 0.25s ease;
+    display: inline-block;
 }
 
 .btn:hover {
@@ -166,38 +170,43 @@ ul li span.done::before {
 
 .timer {
     font-family: 'Segoe UI', sans-serif;
-    font-size: 4rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     text-align: center;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     color: var(--btn-dark);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .quote {
-    flex: 0; 
+    flex: 0;
     min-height: fit-content;
     width: 100%;
-    margin-top: 0; 
+    margin-top: 0;
     box-sizing: border-box;
+
+    .quote {
+        text-align: center;
+        margin-top: 0.5rem;
+    }
 }
 
 .quote p {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 500;
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 500;
 }
 
 .quote span {
-  display: block;
-  margin-top: 0.5rem;
-  font-size: 1.1rem; 
-  font-weight: 600;
-  color: var(--btn-dark);
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--btn-dark);
 }
 
 .panel {
-    flex: 1; 
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -208,25 +217,26 @@ ul li span.done::before {
 @media (max-width: 841px) {
     body {
         height: auto;
-        padding: 2rem 0; 
+        padding: 1.5rem 0;
     }
 
     .container {
-        flex-direction: column; 
+        flex-direction: column;
         height: auto;
         width: 95%;
-        gap: 1.5rem;
+        gap: 1.2rem;
         align-items: center;
     }
 
-    .card.tasks, .panel {
-        width: 100%; 
-        max-width: 450px; 
+    .card.tasks,
+    .panel {
+        width: 100%;
+        max-width: 420px;
         flex: none;
     }
 
     .card.tasks {
-        max-height: none; 
+        max-height: none;
         height: auto;
     }
 
@@ -236,10 +246,24 @@ ul li span.done::before {
 
     .card.pomodoro {
         max-height: none;
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
 
     .timer {
-        font-size: 3rem; 
+        font-size: clamp(2rem, 7vw, 2.6rem);
+        margin: 1rem 0;
+    }
+
+    .quote p {
+        font-size: 1.1rem;
+    }
+
+    .quote span {
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
     }
 }
