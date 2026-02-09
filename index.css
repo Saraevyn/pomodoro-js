@@ -28,7 +28,7 @@ body {
     width: 90%;
     max-width: 1000px;
     gap: 20px;
-    height: 90vh;
+    height: 500px;
     align-items: stretch;
 }
 
@@ -41,6 +41,7 @@ body {
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 2rem;
+    height: 100vw;
 }
 
 .card.pomodoro {
@@ -58,8 +59,19 @@ body {
 }
 
 .card.tasks {
-    flex: 1.2;
-    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card.tasks::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card.tasks::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
 }
 
 h2 {
@@ -185,11 +197,7 @@ ul li span.done::before {
     width: 100%;
     margin-top: 0;
     box-sizing: border-box;
-
-    .quote {
-        text-align: center;
-        margin-top: 0.5rem;
-    }
+    text-align: center;
 }
 
 .quote p {
@@ -208,10 +216,11 @@ ul li span.done::before {
 
 .panel {
     flex: 1;
+    gap: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 #cycleCounter {
@@ -222,7 +231,6 @@ ul li span.done::before {
     font-size: 0.95rem;
     font-weight: 600;
     display: inline-block;
-    margin: auto;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 

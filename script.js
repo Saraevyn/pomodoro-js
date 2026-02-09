@@ -118,5 +118,11 @@ addTaskBtn.addEventListener("click", () => {
   }
 });
 
+taskInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    addTaskBtn.click();
+  }
+});
+
 updateDisplay();
 updateCycleCounter();
