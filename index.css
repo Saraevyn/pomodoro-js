@@ -7,6 +7,11 @@
     --accent: #a68a6d;
 }
 
+* {
+    user-select: none;
+}
+
+
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: var(--bg-light);
@@ -28,15 +33,20 @@ body {
 }
 
 .card {
-    background: var(--card-bg);
+    background: #fffcf6;
     padding: 2rem;
     border-radius: 18px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 2rem;
 }
 
+.card.pomodoro {
+    align-items: center;
+    gap: 1.2rem;
+}
 
 .card.tasks::-webkit-scrollbar {
     width: 6px;
@@ -45,15 +55,6 @@ body {
 .card.tasks::-webkit-scrollbar-thumb {
     background: var(--accent);
     border-radius: 10px;
-}
-
-.card.pomodoro {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 1rem;
 }
 
 .card.tasks {
@@ -143,23 +144,25 @@ ul li span.done::before {
     background-color: var(--btn-medium);
     color: #fff;
     border: none;
-    padding: 0.7rem 1.4rem;
-    border-radius: 30px;
+    padding: 0.8rem 1.6rem;
+    border-radius: 50px;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.25s ease;
-    display: inline-block;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .btn:hover {
     background-color: var(--btn-dark);
-    transform: scale(1.08);
-    box-shadow: 0 6px 14px rgba(68, 67, 67, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
 .btn.active {
-    background-color: var(--btn-dark);
+    background-color: var(--accent);
+    color: #fff;
+    justify-content: center;
 }
 
 .btn.primary {
@@ -169,13 +172,11 @@ ul li span.done::before {
 }
 
 .timer {
-    font-family: 'Segoe UI', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: 3.2rem;
     font-weight: 700;
-    text-align: center;
-    margin: 1.5rem 0;
-    color: var(--btn-dark);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 2px;
+    color: #2c2c2c;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .quote {
@@ -211,6 +212,38 @@ ul li span.done::before {
     flex-direction: column;
     gap: 1.5rem;
     height: 100%;
+}
+
+#cycleCounter {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: inline-block;
+    margin: auto;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modes {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.modes .btn {
+  flex: 1;
+  border-radius: 50px;
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.modes .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 

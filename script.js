@@ -1,6 +1,7 @@
 let timerDisplay = document.getElementById("timer");
 let startBtn = document.getElementById("startBtn");
 let modeButtons = document.querySelectorAll(".modes .btn");
+let cycleCounter = document.getElementById("cycleCounter");
 
 let timeLeft = 25 * 60;
 let timerInterval;
@@ -18,6 +19,10 @@ function updateDisplay() {
     `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 }
 
+function updateCycleCounter() {
+  cycleCounter.textContent = `Ciclo ${focusCount}/4`;
+}
+
 function startTimer() {
   clearInterval(timerInterval);
   timerInterval = setInterval(() => {
@@ -27,20 +32,27 @@ function startTimer() {
     } else {
       clearInterval(timerInterval);
 
-      let audio = new Audio("https://www.soundjay.com/button/beep-07.wav");
+      let audio = new Audio("audio/universfield-new-notification-09-352705.mp3");
       audio.play();
+
+      let message = "";
+      if (currentMode === "focus") message = "Seu tempo de foco terminou!";
+      if (currentMode === "short") message = "Hora de voltar ao foco!";
+      if (currentMode === "long") message = "Pausa longa concluída, vamos recomeçar!";
 
       if (Notification.permission === "granted") {
         new Notification("Pomodoro", {
-          body: "Seu tempo de foco terminou!",
+          body: message,
           icon: "https://cdn-icons-png.flaticon.com/512/1827/1827504.png"
         });
       } else {
-        alert("Tempo acabou!");
+        alert(message);
       }
 
       if (currentMode === "focus") {
         focusCount++;
+        updateCycleCounter();
+
         if (focusCount >= 4) {
           currentMode = "long";
           timeLeft = 15 * 60;
@@ -49,8 +61,13 @@ function startTimer() {
           currentMode = "short";
           timeLeft = 5 * 60;
         }
-        updateDisplay();
+      } else {
+        currentMode = "focus";
+        timeLeft = 25 * 60;
       }
+
+      updateDisplay();
+      startTimer(); 
     }
   }, 1000);
 }
@@ -102,3 +119,4 @@ addTaskBtn.addEventListener("click", () => {
 });
 
 updateDisplay();
+updateCycleCounter();
