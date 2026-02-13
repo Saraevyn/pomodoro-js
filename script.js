@@ -12,11 +12,27 @@ if (Notification.permission !== "granted") {
   Notification.requestPermission();
 }
 
+function updateCircle() {
+  let total = currentMode === "focus" ? 25*60 : currentMode === "short" ? 5*60 : 15*60;
+  let percent = 100 - (timeLeft / total) * 100;
+  let degrees = (percent / 100) * 360;
+  document.getElementById("circle").style.background =
+    `conic-gradient(var(--accent) ${degrees}deg, #ddd ${degrees}deg)`;
+}
+
+function updateProgress() {
+  let total = currentMode === "focus" ? 25*60 : currentMode === "short" ? 5*60 : 15*60;
+  let percent = 100 - (timeLeft / total) * 100;
+  document.getElementById("progress").style.width = percent + "%";
+}
+
 function updateDisplay() {
   let minutes = Math.floor(timeLeft / 60);
   let seconds = timeLeft % 60;
   timerDisplay.textContent =
-    `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    `${minutes.toString().padStart(2,"0")}:${seconds.toString().padStart(2,"0")}`;
+  updateCircle();
+  updateProgress();
 }
 
 function updateCycleCounter() {
@@ -67,7 +83,7 @@ function startTimer() {
       }
 
       updateDisplay();
-      startTimer(); 
+      startTimer();
     }
   }, 1000);
 }
@@ -123,6 +139,45 @@ taskInput.addEventListener("keypress", (e) => {
     addTaskBtn.click();
   }
 });
+
+const quotes = [
+  { text: "A inspiração existe, mas precisa te encontrar trabalhando.", author: "Stephen King" },
+  { text: "Disciplina é liberdade.", author: "Jocko Willink" },
+  { text: "Pequenos progressos diários levam a grandes resultados.", author: "" },
+  { text: "Persistência supera talento quando o talento não persiste.", author: "" }
+];
+
+function rotateQuote() {
+  const random = Math.floor(Math.random() * quotes.length);
+  document.getElementById("quoteText").textContent = quotes[random].text;
+  document.getElementById("quoteAuthor").textContent = quotes[random].author ? `- ${quotes[random].author}` : "";
+}
+
+function updateProgress() {
+  let total = currentMode === "focus" ? 25 * 60 : currentMode === "short" ? 5 * 60 : 15 * 60;
+  let percent = 100 - (timeLeft / total) * 100;
+  document.getElementById("progress").style.width = percent + "%";
+}
+
+function updateDisplay() {
+  let minutes = Math.floor(timeLeft / 60);
+  let seconds = timeLeft % 60;
+  timerDisplay.textContent =
+    `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  updateProgress();
+}
+
+function setCardBackground() {
+  const card = document.getElementById("pomodoroCard");
+  card.classList.remove("focus", "short", "long");
+  card.classList.add(currentMode);
+}
+
+// Ao terminar ciclo
+function endCycle() {
+  rotateQuote();
+  setCardBackground();
+}
 
 updateDisplay();
 updateCycleCounter();

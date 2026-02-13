@@ -4,41 +4,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pomodoro</title>
-  <link rel="stylesheet" href="index.css">
+  <title>Pomodoro</title>  
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
   <div class="container">
     <div class="panel">
       <div class="quote">
-        <p>"A inspiração existe, mas precisa te encontrar trabalhando."</p>
-        <span>- Stephen King</span>
+        <p id="quoteText">"A inspiração existe, mas precisa te encontrar trabalhando."</p>
+        <span id="quoteAuthor">- Stephen King</span>
       </div>
-      <div class="card pomodoro">
-        <div class="modes">
-          <button data-mode="focus" class="btn active">Foco</button>
-          <button data-mode="short" class="btn">Pausa Curta</button>
-          <button data-mode="long" class="btn">Pausa Longa</button>
-        </div> 
-        <div class="timer" id="timer">25:00</div>
-        <div id="cycleCounter">Ciclo 0/4</div>
-        <button id="startBtn" class="btn primary">Iniciar</button>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="card tasks">
-            <h2>Tarefas</h2>
-            <div class="task-input">
-              <input type="text" id="taskInput" placeholder="O que vamos fazer?">
-              <button id="addTask" class="btn">Adicionar</button>
+      <div class="cards-wrapper">
+        <div class="card pomodoro focus" id="pomodoroCard">
+          <div class="modes">
+            <button data-mode="focus" class="btn active">Foco</button>
+            <button data-mode="short" class="btn">Pausa Curta</button>
+            <button data-mode="long" class="btn">Pausa Longa</button>
+          </div>
+          <div class="timer-wrapper">
+            <div class="circle" id="circle">
+              <div class="timer" id="timer">25:00</div>
             </div>
-            <ul id="taskList"></ul>
+          </div>
+          <div id="cycleCounter">Ciclo 0/4</div>
+          <button id="startBtn" class="btn primary">Iniciar</button>
+          <div class="progress-bar">
+            <div id="progress"></div>
           </div>
         </div>
-    </div>    
+        <div class="card tasks">
+          <h2>Tarefas</h2>
+          <div class="task-input">
+            <input type="text" id="taskInput" placeholder="O que vamos fazer?">
+            <button id="addTask" class="btn">Adicionar</button>
+          </div>
+          <ul id="taskList"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
-
 </html>

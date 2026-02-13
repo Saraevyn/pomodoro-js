@@ -11,10 +11,9 @@
     user-select: none;
 }
 
-
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: var(--bg-light);
+    background: linear-gradient(135deg, #f5f2eb, #fff);
     color: var(--text-dark);
     margin: 0;
     height: 100vh;
@@ -25,23 +24,32 @@ body {
 
 .container {
     display: flex;
+    justify-content: space-between;
     width: 90%;
     max-width: 1000px;
     gap: 20px;
     height: 500px;
-    align-items: stretch;
+    align-items: center;
+
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .card {
-    background: #fffcf6;
+    background: linear-gradient(145deg, #fffcf6, #fff);
     padding: 2rem;
     border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 2rem;
-    height: 100vw;
 }
 
 .card.pomodoro {
@@ -49,8 +57,32 @@ body {
     gap: 1.2rem;
 }
 
+.card.pomodoro.focus {
+    background: linear-gradient(145deg, #fff8f4, #ffffff);
+}
+
+.card.pomodoro.short {
+    background: linear-gradient(145deg, #f4fff8, #ffffff);
+}
+
+.card.pomodoro.long {
+    background: linear-gradient(145deg, #f4f8ff, #ffffff);
+}
+
 .card.tasks::-webkit-scrollbar {
     width: 6px;
+}
+
+.card.pomodoro.focus {
+    background: #fffcf6;
+}
+
+.card.pomodoro.short {
+    background: #f5fdf6;
+}
+
+.card.pomodoro.long {
+    background: #f6f8fd;
 }
 
 .card.tasks::-webkit-scrollbar-thumb {
@@ -58,12 +90,7 @@ body {
     border-radius: 10px;
 }
 
-.card.tasks {
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-}
+.card.tasks { flex: 1; /* ocupa o restante do espaço */ overflow-y: auto; display: flex; flex-direction: column; }
 
 .card.tasks::-webkit-scrollbar {
     width: 6px;
@@ -161,13 +188,13 @@ ul li span.done::before {
     cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .btn:hover {
     background-color: var(--btn-dark);
-    transform: translateY(-2px);
+    transform: scale(1.05);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
 }
 
@@ -184,11 +211,16 @@ ul li span.done::before {
 }
 
 .timer {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    letter-spacing: 2px;
-    color: #2c2c2c;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    color: var(--btn-dark);
+}
+
+.timer-wrapper {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin: 1rem auto;
 }
 
 .quote {
@@ -198,6 +230,7 @@ ul li span.done::before {
     margin-top: 0;
     box-sizing: border-box;
     text-align: center;
+    padding-bottom: 20px;
 }
 
 .quote p {
@@ -216,44 +249,96 @@ ul li span.done::before {
 
 .panel {
     flex: 1;
-    gap: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) 0deg, #ddd 0deg);
+    display: flex;
+    align-items: center;
     justify-content: center;
+    transition: background 0.5s linear;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 #cycleCounter {
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--accent), var(--btn-medium));
     color: #fff;
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.95rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 25px;
+    font-size: 1rem;
     font-weight: 600;
-    display: inline-block;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.5px;
 }
 
+#cycleCounter::before {
+    content: "\f2f1";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+
 .modes {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    width: 100%;
 }
 
 .modes .btn {
-  flex: 1;
-  border-radius: 50px;
-  font-weight: 600;
-  padding: 0.6rem 1rem;
-  transition: all 0.2s ease;
+    flex: 1;
+    border-radius: 50px;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    transition: all 0.2s ease;
 }
 
 .modes .btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#progress {
+    height: 10px;
+    width: 0%;
+    background: var(--btn-dark);
+    border-radius: 5px;
+    transition: width 0.5s linear;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #e8e8e8;
+    border-radius: 6px;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+#progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--btn-medium), var(--accent));
+    transition: width 0.5s ease;
+}
 
 @media (max-width: 841px) {
     body {
@@ -267,6 +352,10 @@ ul li span.done::before {
         width: 95%;
         gap: 1.2rem;
         align-items: center;
+    }
+
+    .cards-wrapper {
+        flex-direction: column;
     }
 
     .card.tasks,
@@ -288,6 +377,8 @@ ul li span.done::before {
     .card.pomodoro {
         max-height: none;
         padding: 1.2rem;
+        width: 100%;
+        max-width: 420px;
     }
 
     .timer {
