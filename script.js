@@ -173,7 +173,7 @@ function setCardBackground() {
   card.classList.add(currentMode);
 }
 
-// Ao terminar ciclo
+
 function endCycle() {
   rotateQuote();
   setCardBackground();
